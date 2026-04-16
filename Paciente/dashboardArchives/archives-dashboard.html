@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ÍLION — Mine Archives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="archives-styles.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <button class="tab tab-home" id="btnHome">🏠 Home</button>
+  <button class="tab tab-arch">Archives</button>
+  <button class="tab tab-prof" id="btnProfile">Profile</button>
+</nav>
+
+<div class="page-bar">
+  <h1>Mine Archives</h1>
+  <button class="btn-logout" id="btnLogout">🚪 Log out</button>
+</div>
+
+<div class="layout">
+  <!-- LEFT: categories panel -->
+  <div class="nav-panel">
+    <div class="nav-panel-title">MEDICAL RECORDS</div>
+    <button class="nav-item active" data-cat="Radiografías">Radiografías</button>
+    <button class="nav-item" data-cat="Estudios de laboratorio">Estudios de laboratorio</button>
+    <button class="nav-item" data-cat="Rayos X">Rayos X</button>
+    <button class="nav-item" data-cat="Análisis">Análisis</button>
+    <button class="nav-item" data-cat="Exámenes">Exámenes</button>
+  </div>
+
+  <!-- RIGHT: dynamic content -->
+  <div class="content-panel">
+    <div class="content-title" id="contentTitle">Radiografías</div>
+
+    <!-- dynamic file list -->
+    <div class="archive-list" id="archiveList"></div>
+
+    <!-- empty state (visible when no files) -->
+    <div class="empty-state" id="emptyState">
+      <span class="empty-icon">📂</span>
+      <span>No documents in this category</span>
+      <span style="font-size:12px; color:#aaa">Upload your first medical file</span>
+    </div>
+
+    <!-- Upload modal (drag & drop) -->
+    <div class="upload-modal" id="uploadModal">
+      <div class="upload-inner" id="uploadInner">
+        <div class="upload-ctrls">
+          <button class="upload-ctrl-btn" id="btnModalMin">—</button>
+          <button class="upload-ctrl-btn" id="btnModalClose">✕</button>
+        </div>
+        <div class="drop-zone" id="dropZone">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <polyline points="9 15 12 12 15 15"/>
+          </svg>
+        </div>
+        <input type="file" id="fileInput" accept="*/*" multiple style="display:none">
+        <button class="btn-select-modal" id="btnSelectModal">📎 Select files</button>
+        <span class="drag-hint">or drag & drop here (multiple allowed)</span>
+      </div>
+    </div>
+
+    <!-- main upload button -->
+    <button class="btn-select" id="btnSelect">＋ Upload file</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="archives-script.js" defer></script>
+</body>
+</html>

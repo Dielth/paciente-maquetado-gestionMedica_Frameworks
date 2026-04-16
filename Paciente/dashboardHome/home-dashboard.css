@@ -1,0 +1,194 @@
+/* home-dashboard.css */
+:root{
+  --purple-dark:#55649e; --purple:#787fb0;
+  --accent-mint:#94c2b2; --accent-light:#b2d9d7;
+  --bg:#f5f5f0; --white:#ffffff; --black:#000000;
+  --muted:#9a9dc4; --variante-muted:#bcbdd9;
+  --f:'Poppins','Inter',sans-serif;
+  --lift:-5px;
+  --ease:cubic-bezier(.34,1.56,.64,1);
+  --dur:220ms;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);background:var(--bg);color:var(--black);min-height:100vh}
+
+/* ── Navbar ── */
+nav.topbar{height:38px;display:flex;align-items:stretch}
+.tab{
+  padding:0 26px;font-size:13px;font-family:var(--f);cursor:pointer;border:none;
+  display:flex;align-items:center;gap:5px;font-weight:400;
+  transform:translateY(0);will-change:transform;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) ease;
+  border-radius:0;
+}
+.tab:hover{transform:translateY(var(--lift));box-shadow:0 4px 12px rgba(0,0,0,.13)}
+.tab.active{transform:translateY(var(--lift));box-shadow:0 5px 14px rgba(0,0,0,.16);font-weight:600}
+.tab-home{background:var(--purple-dark);color:var(--white);font-weight:600}
+.tab-arch{background:var(--accent-mint);color:var(--white)}
+.tab-prof{background:var(--accent-light);color:var(--white)}
+
+/* ── Page bar ── */
+.page-bar{
+  background:var(--accent-mint);padding:14px 26px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.page-bar h1{font-size:26px;font-weight:400;color:var(--white)}
+.btn-logout{
+  background:var(--purple);border:none;color:var(--white);border-radius:20px;
+  padding:6px 16px;font-size:12px;font-family:var(--f);cursor:pointer;
+  display:flex;align-items:center;gap:4px;transition:background .2s;
+}
+.btn-logout:hover{background:var(--purple-dark)}
+
+/* ── Layout ── */
+.layout{display:flex;padding:28px 26px;gap:28px;align-items:flex-start}
+.left{flex:1}
+.right{width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+
+/* ── Appointments label ── */
+.appt-label{
+  display:inline-block;background:var(--accent-light);color:var(--white);
+  font-size:13.5px;font-weight:400;padding:10px 22px;
+  border-radius:20px;margin-bottom:16px;
+}
+
+/* ── Table ── */
+.appt-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.appt-table th{
+  background:#e0e0e0;padding:8px 10px;font-weight:600;font-size:12px;
+  color:#444;text-align:left;border:1px solid #ccc;
+}
+.appt-table td{
+  padding:8px 10px;border:1px solid #ddd;color:#333;
+  vertical-align:top;background:var(--white);font-size:12px;line-height:1.5;
+}
+.appt-table tr:hover td{background:#f9f9f9}
+.status-confirmed{color:#4a8a6a;font-weight:600}
+.status-pending{color:#b07830;font-weight:600}
+
+/* ── Mini calendar (estado colapsado) ── */
+.mini-cal{
+  background:#e0e0e0;border-radius:8px;padding:8px;width:110px;
+}
+.mini-cal table{border-collapse:collapse;width:100%}
+.mini-cal th{font-size:9px;color:#888;font-weight:600;text-align:center;padding:2px 1px}
+.mini-cal td{
+  font-size:9px;color:#555;text-align:center;
+  padding:3px 1px;border:1px solid #d0d0d0;background:var(--white);
+}
+.mini-cal td.today{background:var(--accent-light);color:var(--white);font-weight:600}
+
+/* ── Schedule button ── */
+.btn-sched{
+  background:var(--purple);color:var(--white);border:none;
+  border-radius:20px;padding:10px 18px;font-size:12.5px;
+  font-family:var(--f);cursor:pointer;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+  transition:background .2s,transform .15s;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.btn-sched:hover{background:var(--purple-dark);transform:translateY(-2px)}
+
+/* ════════════════════════════════
+   SCHEDULE PANEL  (tomado de profile-dashboard.html)
+═════════════════════════════════ */
+.sched-panel{
+  display:none;
+  background:var(--purple-dark);
+  border-radius:14px;
+  padding:16px;
+  width:100%;           /* ocupa todo el ancho del .right */
+  animation:fi .22s ease;
+}
+.sched-panel.open{display:block}
+
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+.sched-inner{
+  background:#fefaf6;border-radius:10px;padding:16px 18px;
+  position:relative;display:flex;gap:20px;min-height:260px;
+  flex-wrap:wrap;           /* responsive si el panel es estrecho */
+}
+.sched-ctrls{position:absolute;top:8px;right:10px;display:flex;gap:6px}
+.sched-x{background:none;border:none;cursor:pointer;font-size:14px;color:#888}
+.sched-x:hover{color:var(--black)}
+
+/* Columna izquierda: búsqueda / resumen */
+.sched-left{flex:1;min-width:140px;padding-top:2px}
+.doc-search-wrap{
+  display:flex;align-items:center;gap:8px;background:var(--accent-light);
+  border-radius:20px;padding:6px 14px;margin-bottom:10px;
+}
+.doc-search{
+  background:none;border:none;outline:none;font-family:var(--f);
+  font-size:12px;color:var(--white);flex:1;
+}
+.doc-search::placeholder{color:rgba(255,255,255,.75)}
+.doc-item{
+  font-size:12.5px;color:#333;padding:6px 5px;cursor:pointer;
+  border-radius:5px;transition:background .15s;
+}
+.doc-item:hover,.doc-item.sel{
+  background:rgba(120,127,176,.18);font-weight:600;color:var(--purple-dark);
+}
+
+/* Columna izquierda: resumen (estado 2) */
+.sched-summary{display:none;flex:1;min-width:140px;flex-direction:column;gap:12px;padding-top:2px}
+.sched-summary.show{display:flex}
+.sum-lbl{font-size:11px;color:#888;margin-bottom:2px}
+.sum-val{font-size:12.5px;font-weight:600;color:var(--black)}
+.hour-row{display:flex;align-items:center;gap:4px}
+.hour-inp{
+  width:40px;padding:4px;border-radius:6px;
+  border:1.5px solid var(--accent-light);background:var(--accent-light);
+  color:var(--white);font-family:var(--f);font-size:12.5px;
+  text-align:center;outline:none;
+}
+.hour-sep{font-size:14px;font-weight:600;color:#555}
+.desc-ta{
+  width:100%;height:48px;resize:none;border-radius:7px;
+  border:none;background:var(--accent-light);opacity:.65;
+  font-family:var(--f);font-size:11.5px;padding:6px 10px;
+  outline:none;color:var(--white);
+}
+
+/* Columna derecha: calendario */
+.sched-right{flex:1;min-width:150px;display:flex;flex-direction:column}
+.sel-lbl{font-size:11px;color:#666;margin-bottom:5px}
+.cal-hdr{
+  background:var(--purple);color:var(--white);border-radius:5px;
+  padding:4px 8px;display:flex;align-items:center;justify-content:space-between;
+  font-weight:600;font-size:11px;margin-bottom:4px;letter-spacing:.3px;
+  text-transform:uppercase;
+}
+.cal-hdr button{background:none;border:none;color:var(--white);cursor:pointer;font-size:14px;padding:0 2px;line-height:1}
+.cal-table{border-collapse:collapse;width:100%}
+.cal-table th{font-size:9.5px;color:#888;font-weight:600;padding:2px;text-align:center;border:1px solid #e0e0e0;background:#f5f5f5}
+.cal-table td{
+  text-align:center;padding:4px 2px;font-size:10.5px;color:#444;
+  cursor:pointer;border:1px solid #e8e8e8;background:var(--white);
+}
+.cal-table td.has{background:#daeee9}
+.cal-table td.emp{color:#ccc;cursor:default;background:#fafafa}
+.cal-table td.today-cell{color:#e05555;font-weight:700}
+.cal-table td.picked{background:var(--accent-mint);color:var(--white);font-weight:700}
+.cal-table td:not(.emp):hover{background:rgba(148,194,178,.3)}
+
+.btn-confirm{
+  display:none;align-self:flex-end;margin-top:auto;padding-top:8px;
+  background:var(--purple);color:var(--white);border:none;
+  border-radius:20px;padding:8px 16px;font-size:11.5px;
+  font-family:var(--f);cursor:pointer;align-items:center;gap:5px;
+  transition:background .2s;
+}
+.btn-confirm.show{display:flex}
+.btn-confirm:hover{background:var(--purple-dark)}
+
+/* ── Toast ── */
+.toast{
+  display:none;position:fixed;bottom:20px;right:20px;
+  background:var(--purple-dark);color:var(--white);
+  padding:9px 17px;border-radius:9px;font-size:12px;
+  z-index:200;box-shadow:0 4px 14px rgba(0,0,0,.16);
+}
+.toast.show{display:block}

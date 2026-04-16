@@ -1,0 +1,257 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ÍLION — My Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile-dashboard.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <button class="tab tab-home" id="btnHome">🏠 Home</button>
+  <button class="tab tab-arch" id="btnArchives">Archives</button>
+  <button class="tab tab-prof">Profile</button>
+</nav>
+
+<div class="page-bar">
+  <h1 id="pageTitle">My profile</h1>
+  <button class="btn-logout" id="btnLogout">💨 Log out</button>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="arch-card">
+      <div class="arch-photo">
+        <img src="https://via.placeholder.com/125x125/94c2b2/ffffff?text=NR" alt="Noah">
+      </div>
+      <nav class="sidebar-nav">
+        <button class="s-link active" data-sec="home">My personal information</button>
+        <button class="s-link" data-sec="medinfo">My medical information</button>
+        <button class="s-link" data-sec="medication">Medication history</button>
+        <button class="s-link" data-sec="progress">Progress Notes</button>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- HOME -->
+    <div id="sec-home" class="sec active">
+      <div class="bell-wrap">
+        <button class="bell-btn" id="bellBtn">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="bell-dot" id="bellDot"></span>
+        </button>
+        <div class="notif-card" id="notifCard">
+          <p class="notif-msg">Please confirm your appointment on <strong>February 18 at 6:10 pm</strong> with <strong>Dr. Elida Ríos.</strong></p>
+          <hr class="notif-hr">
+          <p class="notif-msg" style="color:#555;font-style:italic">"How was your appointment with Dr. Samuel? Your feedback would be very helpful to us 😊"</p>
+        </div>
+      </div>
+
+      <h2 class="welcome" id="welcomeMsg">Welcome, Noah Reyes Calderón</h2>
+
+      <div id="piCard" style="display:none">
+        <div class="pi-card">
+          <div class="pi-card-title">My personal information</div>
+          <div class="pi-fields">
+            <div class="pi-row"><div class="pi-label">Name</div><div class="pi-val" id="piName">Noah</div></div>
+            <div class="pi-row"><div class="pi-label">Last name</div><div class="pi-val" id="piLastname">Reyes Calderón</div></div>
+            <div class="pi-row"><div class="pi-label">Email</div><div class="pi-val" id="piEmail">noahreyes56@gmail.com</div></div>
+            <div class="pi-row"><div class="pi-label">Number</div><div class="pi-val pi-placeholder" id="piPhone">Your number here</div></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:16px">
+            <button class="btn-edit-info" id="btnEditInfo">✏️ Edit my information</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:10px">
+          <button class="btn-sched" id="btnOpenSched">📅 Schedule an appointment</button>
+        </div>
+      </div>
+
+      <div class="edit-panel" id="editPanel">
+        <h2>Edit my information</h2>
+        <div class="edit-row"><div class="edit-lbl">Name</div><input class="edit-inp" id="editName" type="text" value="Noah"></div>
+        <div class="edit-row"><div class="edit-lbl">Last name</div><input class="edit-inp" id="editLastname" type="text" value="Reyes Calderón"></div>
+        <div class="edit-row"><div class="edit-lbl">Email</div><input class="edit-inp" id="editEmail" type="email" value="noahreyes56@gmail.com"></div>
+        <div class="edit-row"><div class="edit-lbl">Number</div><input class="edit-inp" id="editPhone" type="tel" value="4425494025"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:6px">
+          <button class="btn-save" id="btnSaveInfo">💾 Save</button>
+        </div>
+      </div>
+
+      <div class="sched-panel" id="schedPanel">
+        <div class="sched-inner">
+          <div class="sched-ctrls">
+            <button class="sched-x" id="btnSchedClose">✕</button>
+          </div>
+          <div class="sched-left" id="schedLeft">
+            <div class="doc-search-wrap">
+              <input class="doc-search" id="docSearch" type="text" placeholder="Find your trusted doctor">
+              <span style="color:rgba(255,255,255,.8)">🔍</span>
+            </div>
+            <div id="docList">
+              <div class="doc-item sel">Dr. Samuel Neftali Lara</div>
+              <div class="doc-item">Dra. Elida Berenice Ríos</div>
+            </div>
+          </div>
+          <div class="sched-summary" id="schedSummary">
+            <div><div class="sum-lbl">Your doctor</div><div class="sum-val" id="sumDoc">—</div></div>
+            <div><div class="sum-lbl">Your date</div><div class="sum-val" id="sumDate">—</div></div>
+            <div>
+              <div class="sum-lbl">Your Hour</div>
+              <div class="hour-row">
+                <input class="hour-inp" id="hourH" type="number" min="0" max="23" value="16">
+                <span class="hour-sep">:</span>
+                <input class="hour-inp" id="hourM" type="number" min="0" max="59" value="00">
+              </div>
+            </div>
+            <div><div class="sum-lbl">An optional description</div>
+              <textarea class="desc-ta" placeholder="Describe your symptoms…"></textarea>
+            </div>
+          </div>
+          <div class="sched-right">
+            <div class="sel-lbl">Select a date</div>
+            <div class="cal-hdr">
+              <button id="calPrev">&#8249;</button>
+              <span id="calMonthLbl"></span>
+              <button id="calNext">&#8250;</button>
+            </div>
+            <table class="cal-table">
+              <thead><tr>
+                <th class="wn">N.°</th>
+                <th>Do</th><th>Lu</th><th>Ma</th><th>Mi</th><th>Ju</th><th>Vi</th><th>Sá</th>
+              </tr>
+              </thead>
+              <tbody id="calBody"></tbody>
+            </table>
+            <div class="cal-bottom">© iHub</div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px">
+              <button class="btn-confirm" id="btnConfirmAppt" style="display:none">✅ I confirm my appointment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="schedWrapWelcome" style="display:flex;justify-content:flex-end;margin-top:10px">
+        <button class="btn-sched" id="btnOpenSchedWelcome">📅 Schedule an appointment</button>
+      </div>
+    </div>
+
+    <!-- MEDICAL INFO -->
+    <div id="sec-medinfo" class="sec">
+      <div class="med-wrap">
+        <div class="med-divider"><span>General</span></div>
+        <div class="med-grid">
+          <div class="med-field"><div class="med-lbl">Name</div><div class="med-val">Noah</div></div>
+          <div class="med-field"><div class="med-lbl">Last name</div><div class="med-val">Reyes Calderón</div></div>
+          <div class="med-field"><div class="med-lbl">Email</div><div class="med-val">noahreyes56@gmail.com</div></div>
+          <div class="med-field"><div class="med-lbl">Date of Birth</div><div class="med-val">March 4, 1993</div></div>
+          <div class="med-field"><div class="med-lbl">Phone number</div><div class="med-val">4425494025</div></div>
+        </div>
+        <div class="med-divider"><span>Past Medical History</span></div>
+        <div class="med-grid">
+          <div class="med-field"><div class="med-lbl">Blood type</div><div class="med-val">O+</div></div>
+          <div class="med-field"><div class="med-lbl">Allergies</div><div class="med-val">Penicillin, Dust mites</div></div>
+          <div class="med-field"><div class="med-lbl">Chronic conditions</div><div class="med-val">Mild hypertension</div></div>
+          <div class="med-field"><div class="med-lbl">Medications</div><div class="med-val">Lisinopril 10 mg</div></div>
+        </div>
+        <div class="med-divider"><span>Family History</span></div>
+        <div class="med-grid">
+          <div class="med-field"><div class="med-lbl">Diabetes</div><div class="med-val">Paternal grandfather</div></div>
+          <div class="med-field"><div class="med-lbl">Hypertension</div><div class="med-val">Father</div></div>
+          <div class="med-field"><div class="med-lbl">Cancer History</div><div class="med-val">None reported</div></div>
+          <div class="med-field"><div class="med-lbl">Genetic Disorders</div><div class="med-val">None reported</div></div>
+        </div>
+        <div class="med-divider"><span>Social History</span></div>
+        <div class="med-grid">
+          <div class="med-field"><div class="med-lbl">Smoking / Alcohol / Drugs</div><div class="med-val">Non-smoker, occasional alcohol</div></div>
+          <div class="med-field"><div class="med-lbl">Physical activity</div><div class="med-val">3× per week (running)</div></div>
+          <div class="med-field"><div class="med-lbl">Occupation</div><div class="med-val">Software engineer</div></div>
+          <div class="med-field"><div class="med-lbl">Living situation</div><div class="med-val">Lives with partner</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDICATION -->
+    <div id="sec-medication" class="sec">
+      <div class="med-hist-card">
+        <div class="med-hist-title">Medication history</div>
+        <div class="med-hist-list">
+          <div class="rx-list-item" data-target="rx-detail-1">My prescription February 16, 2026</div>
+          <div class="rx-detail" id="rx-detail-1">
+            <p>Patient Name: Noah Reyes Calderón</p>
+            <p>Date: February 16, 2026</p>
+            <p>Diagnosis: Acute Pharyngitis</p>
+            <p>Medications Prescribed:</p>
+            <ul>
+              <li><strong>Acetaminophen 500 mg</strong><br>Take one tablet every 8 hours as needed for throat pain.</li>
+              <li><strong>Saltwater Gargles</strong><br>Gargle with warm saltwater twice daily to help reduce irritation.</li>
+              <li><strong>Hydration Recommendation</strong><br>Increase fluid intake throughout the day to support recovery.</li>
+            </ul>
+            <p>Additional Notes:</p>
+            <p>Patient advised to monitor symptoms and seek medical evaluation if fever persists or symptoms worsen.</p>
+            <p>Physician: Dra. Elida Ríos</p>
+            <p>License Number: 327930</p>
+          </div>
+          <div class="rx-list-item" data-target="rx-detail-2">My prescription January 19, 2026</div>
+          <div class="rx-detail" id="rx-detail-2">
+            <p>Patient Name: Noah Reyes Calderón</p>
+            <p>Date: January 19, 2026</p>
+            <p>Diagnosis: Upper Respiratory Infection</p>
+            <p>Medications Prescribed:</p>
+            <ul>
+              <li><strong>Amoxicillin 500 mg</strong><br>Take every 8 hours for 7 days. Complete the full course.</li>
+              <li><strong>Paracetamol 500 mg</strong><br>Take every 6 hours as needed for fever or pain.</li>
+            </ul>
+            <p>Additional Notes:</p>
+            <p>Patient advised to rest and maintain fluid intake. Follow up if symptoms persist beyond 7 days.</p>
+            <p>Physician: Dra. Edda Barrera Ríos</p>
+            <p>License Number: 118745</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS NOTES -->
+    <div id="sec-progress" class="sec">
+      <div class="pn-hdr">
+        <span class="pn-name">Noah Reyes Calderón</span>
+        <div class="pn-ava">
+          <img src="https://via.placeholder.com/72x72/94c2b2/ffffff?text=NR" alt="Noah">
+        </div>
+      </div>
+      <div class="pn-divider"><span>Patient's symptoms and complaints.</span></div>
+      <textarea class="pn-ta" placeholder="Patient reports headache for 3 days"></textarea>
+      <div class="pn-divider"><span>Physical exam and vital signs.</span></div>
+      <div class="pn-vitals">
+        <div class="pn-field"><div class="pn-lbl">Blood pressure</div><div class="pn-val"></div></div>
+        <div class="pn-field"><div class="pn-lbl">Respiratory rate</div><div class="pn-val"></div></div>
+        <div class="pn-field"><div class="pn-lbl">Pulse</div><div class="pn-val"></div></div>
+        <div class="pn-field"><div class="pn-lbl">Body temperature</div><div class="pn-val"></div></div>
+        <div class="pn-field"><div class="pn-lbl">Weight</div><div class="pn-val"></div></div>
+        <div class="pn-field"><div class="pn-lbl">Height</div><div class="pn-val"></div></div>
+      </div>
+      <div class="pn-divider"><span>Diagnosis or clinical impression.</span></div>
+      <textarea class="pn-ta"></textarea>
+      <div class="pn-divider"><span>Treatment, medications, and follow-up.</span></div>
+      <textarea class="pn-ta"></textarea>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="profile-dashboard.js"></script>
+</body>
+</html>

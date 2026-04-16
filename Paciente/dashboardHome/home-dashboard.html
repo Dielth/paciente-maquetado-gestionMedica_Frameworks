@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÍLION — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home-dashboard.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="topbar">
+  <button class="tab tab-home active">🏠 Home</button>
+  <button class="tab tab-arch" id="btnArchives">Archives</button>
+  <button class="tab tab-prof" id="btnProfile">Profile</button>
+</nav>
+
+<!-- PAGE BAR -->
+<div class="page-bar">
+  <h1>Welcome, Noah</h1>
+  <button class="btn-logout" id="btnLogout">💨 Log out</button>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT: appointments table -->
+  <div class="left">
+    <div class="appt-label">Appointments for today</div>
+    <table class="appt-table">
+      <thead>
+        <tr>
+          <th>Hour</th><th>Day</th><th>Month</th><th>Year</th>
+          <th>Status</th><th>Dirección</th><th>Piso</th><th>Consultorio</th><th>Médico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>10:00</td><td>Monday</td><td>February</td><td>2026</td>
+          <td><span class="status-confirmed">Confirmed</span></td>
+          <td>Av. de las Ciencias 2058,<br>76226 Juriquilla, Qro.</td>
+          <td>Piso 18</td><td>Consultorio 3</td><td>Dra. Elida Rios</td>
+        </tr>
+        <tr>
+          <td>13:10</td><td>Tuesday</td><td>February</td><td>2026</td>
+          <td><span class="status-pending">Pending</span></td>
+          <td>Av. de las Ciencias 2058,<br>76226 Juriquilla, Qro.</td>
+          <td>Piso 6</td><td>Consultorio 1</td><td>Dr. Samuel Lara</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RIGHT: mini-cal + botón + panel -->
+  <div class="right">
+
+    <!-- Mini calendar (estado por defecto, se oculta cuando el panel está abierto) -->
+    <div class="mini-cal" id="miniCalWrap">
+      <table>
+        <thead>
+          <tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr>
+        </thead>
+        <tbody id="miniCalBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Schedule button -->
+    <button class="btn-sched" id="btnSched">📅 Schedule an appointment</button>
+
+    <!-- ════════════════════════════
+         SCHEDULE PANEL
+         Estructura idéntica a profile-dashboard.html
+    ════════════════════════════ -->
+    <div class="sched-panel" id="schedPanel">
+      <div class="sched-inner">
+
+        <div class="sched-ctrls">
+          <button class="sched-x" id="btnSchedClose" title="Close">✕</button>
+        </div>
+
+        <!-- Estado 1: seleccionar doctor -->
+        <div class="sched-left" id="schedLeft">
+          <div class="doc-search-wrap">
+            <input class="doc-search" id="docSearch" type="text" placeholder="Find your trusted doctor">
+            <span style="color:rgba(255,255,255,.8);font-size:13px">🔍</span>
+          </div>
+          <div id="docList">
+            <div class="doc-item sel">Dr. Samuel Neftali Lara</div>
+            <div class="doc-item">Dra. Elida Berenice Ríos</div>
+          </div>
+        </div>
+
+        <!-- Estado 2: resumen (visible tras seleccionar doctor + fecha) -->
+        <div class="sched-summary" id="schedSummary">
+          <div>
+            <div class="sum-lbl">Your doctor</div>
+            <div class="sum-val" id="sumDoc">—</div>
+          </div>
+          <div>
+            <div class="sum-lbl">Your date</div>
+            <div class="sum-val" id="sumDate">—</div>
+          </div>
+          <div>
+            <div class="sum-lbl">Hour</div>
+            <div class="hour-row">
+              <input class="hour-inp" id="hourH" type="number" min="0" max="23" value="16">
+              <span class="hour-sep">:</span>
+              <input class="hour-inp" id="hourM" type="number" min="0" max="59" value="00">
+            </div>
+          </div>
+          <div>
+            <div class="sum-lbl">Optional description</div>
+            <textarea class="desc-ta" placeholder="Describe your symptoms…"></textarea>
+          </div>
+        </div>
+
+        <!-- Calendario (siempre visible) -->
+        <div class="sched-right">
+          <div class="sel-lbl">Select a date</div>
+          <div class="cal-hdr">
+            <button id="calPrev">&#8249;</button>
+            <span id="calMonthLbl"></span>
+            <button id="calNext">&#8250;</button>
+          </div>
+          <table class="cal-table">
+            <thead>
+              <tr>
+                <th>Mo</th><th>Tu</th><th>We</th><th>Th</th>
+                <th>Fr</th><th>Sa</th><th>Su</th>
+              </tr>
+            </thead>
+            <tbody id="calBody"></tbody>
+          </table>
+          <div style="display:flex;justify-content:flex-end;margin-top:8px">
+            <button class="btn-confirm" id="btnConfirmAppt">✅ Confirm appointment</button>
+          </div>
+        </div>
+
+      </div><!-- /sched-inner -->
+    </div><!-- /sched-panel -->
+
+  </div><!-- /right -->
+</div><!-- /layout -->
+
+<div class="toast" id="toast"></div>
+
+<script src="home-dashboard.js"></script>
+</body>
+</html>
