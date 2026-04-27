@@ -10,8 +10,8 @@
   }
 
   /* ── NAV ── */
-  byId('btnHome').addEventListener('click',function(){ window.location.href=''; });
-  byId('btnArchives').addEventListener('click',function(){ window.location.href=''; });
+  byId('btnHome').addEventListener('click',function(){ window.location.href='../dashboardHome/index.html'; });
+  byId('btnArchives').addEventListener('click',function(){ window.location.href='../dashboardArchives/archives-dashboard.html'; });
   byId('btnLogout').addEventListener('click',function(){ window.location.href=''; });
 
   /* ── SECTION SWITCHING ── */

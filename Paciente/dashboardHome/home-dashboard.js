@@ -12,8 +12,8 @@
   }
 
   /* ── Navegación ── */
-  byId('btnArchives').addEventListener('click',function(){ window.location.href=''; });
-  byId('btnProfile').addEventListener('click',function(){ window.location.href=''; });
+  byId('btnArchives').addEventListener('click',function(){ window.location.href='../dashboardArchives/archives-dashboard.html'; });
+  byId('btnProfile').addEventListener('click',function(){ window.location.href='../dashboardProfile/profile-dashboard.html'; });
   byId('btnLogout').addEventListener('click',function(){ window.location.href=''; });
 
   /* ════════════════════════════════════════

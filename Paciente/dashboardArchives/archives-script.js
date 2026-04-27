@@ -209,10 +209,10 @@
   
   // ----- Top navigation (home / profile / logout) -----
   byId('btnHome').addEventListener('click', () => {
-    window.location.href = 'dashboardSesion1.html'; // ruta de ejemplo ajustar según estructura real
+    window.location.href = '../dashboardHome/index.html';
   });
   byId('btnProfile').addEventListener('click', () => {
-    window.location.href = 'perfil-paciente.html'; // ruta de ejemplo ajustar según estructura real
+    window.location.href = '../dashboardProfile/profile-dashboard.html';
   });
   byId('btnLogout').addEventListener('click', () => {
     window.location.href = ''; // ruta de ejemplo ajustar según estructura real
